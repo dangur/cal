@@ -1,0 +1,21 @@
+<?php
+/*$client = \Drupal::service('http_client');
+$result = $client->get('http://waterservices.usgs.gov/nwis/dv/?format=json&sites=06090800&period=P60D', ['Accept' => 'application/json']);
+$output = $result->getBody;
+
+$serializer = \Drupal::service('serializer');
+$entity = $serializer->deserialize($output, '\Drupal\node\Entity\Node', 'json');*/
+
+// GET
+
+$client = \Drupal::httpClient();
+
+try {
+  $request = $client->request('GET', 'http://waterservices.usgs.gov/nwis/dv/?format=json&sites=06090800&period=P60D');
+  $response = $request->getBody();
+  $json = json_decode($response);
+  print_r($json);
+}
+catch (\GuzzleHttp\Exception\RequestException $e) {
+  watchdog_exception('cal', $e->getMessage());
+}

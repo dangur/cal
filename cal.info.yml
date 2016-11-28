@@ -1,0 +1,5 @@
+name: Cal
+description: A custom http client for the California Water Challenge!
+package: Cal
+type: module
+core: 8.x

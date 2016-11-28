@@ -1,0 +1,11 @@
+#Service definition in YAML.
+services:
+  cal.client:
+    class: GuzzleHttp\Client
+    factory: cal.client.factory:get
+  cal.client.factory:
+    class: Drupal\cal\ClientFactory
+  cal.default:
+    class: Drupal\cal\DefaultService
+    arguments: []
+
